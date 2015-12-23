@@ -1,8 +1,38 @@
-body {
-  font-family: arial;
-  background-color: rgb(185,179,175);}
-h1 {
-  color: rgb(255,255,255);}
-p {
-  font-family: "Times New Roman", Times, serif;
+html {
+    font-family: "Lucida Grande", Arial, sans-serif;
+}
+
+#header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding:0.5%;
+}
+#navbar {
+    line-height: 250%;
+    background-color: #eeeeee;
+    height: 90%;
+    width: 15%;
+    float: left;
+    padding: 2%;
+}
+#visual {
+    width: 60%;
+    float: left;
+    padding-left: 1%;
+}
+#content {
+    height: 90%;
+}
+#abstract, #procedure, #analysis, #conjectures, #conclusion {
+    width: 60%;
+    float: left;
+    padding-left: 1%;
+}
+#footer {
+    background-color: black;
+    color: white;
+    clear: both;
+    text-align: center;
+    padding: 0.5%;
 }
