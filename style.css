@@ -10,11 +10,28 @@ html {
 }
 #navbar {
     line-height: 250%;
-    background-color: #eeeeee;
+    background-color: #f1f1f1;
     height: 90%;
     width: 15%;
     float: left;
     padding: 2%;
+}
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+#navbar li a {
+    display: block;
+    color: #000000;
+    padding-left: 5%;
+    text-decoration: none;
+}
+#navbar li a:hover {
+    background-color: #555;
+    color: white;
 }
 #visual {
     width: 60%;
