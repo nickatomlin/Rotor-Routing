@@ -6,12 +6,12 @@ html {
     background-color: black;
     color: white;
     text-align: center;
-    padding:0.5%;
+    padding: 0.5%;
 }
 #navbar {
     line-height: 250%;
     background-color: #f1f1f1;
-    height: 90%;
+    height: 175%;
     width: 15%;
     float: left;
     padding: 2%;
@@ -34,7 +34,6 @@ html {
     color: white;
 }
 #visual {
-    width: 60%;
     float: left;
     padding-left: 1%;
 }
@@ -42,9 +41,9 @@ html {
     height: 90%;
 }
 #abstract, #procedure, #analysis, #conjectures, #conclusion {
-    width: 60%;
     float: left;
     padding-left: 1%;
+    width: 60%;
 }
 #footer {
     background-color: black;
