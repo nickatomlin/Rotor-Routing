@@ -3,7 +3,7 @@
     <title> Rotor Routing Visualization </title>
     <link href="style.css" type="text/css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="init();">
     <div id="header">
       <h1> Rotor Routing for Sandpile Dynamics</h1>
     </div>
@@ -17,16 +17,16 @@
       <li><a href="#conclusion">Conclusion</a></li>
       </ul>
     </div>
-    <div id="content">
+      <div id="content">
       <div id="abstract">
         <h2> Abstract </h2>
         <p> Lorem ipsum dolor sit amet, te quo doming voluptatum reprehendunt. Eu vim legere indoctum. In veri dicam definitionem sed, at case latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
       </div>
       <div id="visual">
-        <canvas id="myCanvas" width="510px" height="510px" style="border:1px solid #d3d3d3;">
-        Your browser does not support the HTML5 canvas tag.</canvas>
+        <canvas id="canvas" width="800px" height="600px">Your browser does not support the HTML5 canvas tag.</canvas>
         <script src="js/main.js"></script>
       </div>
+      <img src="bar.png" id="bar" style="display:none"/>
       <div id="procedure">
         <h2> Procedure </h2>
         <p> Lorem ipsum dolor sit amet, te quo doming voluptatum reprehendunt. Eu vim legere indoctum. In veri dicam definitionem sed, at case latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
