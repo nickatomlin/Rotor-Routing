@@ -33,37 +33,37 @@ function update() {
           if (y > 0) {
             var new_item = [x, y - 1];
             new_locations.push(new_item);
-            matrix[x][y] = 1;
-            ctx.fillStyle = "blue";
-            ctx.fillRect(x, y, 1, 1);
           }
+          matrix[x][y] = 1;
+          ctx.fillStyle = "blue";
+          ctx.fillRect(x, y, 1, 1);
         }
         else if (matrix[x][y] == 1) {
           if (x > 0) {
             var new_item = [x - 1, y];
             new_locations.push(new_item);
-            matrix[x][y] = 2;
-            ctx.fillStyle = "red";
-            ctx.fillRect(x, y, 1, 1);
           }
+          matrix[x][y] = 2;
+          ctx.fillStyle = "red";
+          ctx.fillRect(x, y, 1, 1);
         }
         else if (matrix[x][y] == 2) {
           if (y < 499) {
             var new_item = [x, y + 1];
             new_locations.push(new_item);
-            matrix[x][y] = 3;
-            ctx.fillStyle = "green";
-            ctx.fillRect(x, y, 1, 1);
           }
+          matrix[x][y] = 3;
+          ctx.fillStyle = "green";
+          ctx.fillRect(x, y, 1, 1);
         }
         else if (matrix[x][y] == 3) {
           if (x < 499) {
             var new_item = [x + 1, y];
             new_locations.push(new_item);
-            matrix[x][y] = 0;
-            ctx.fillStyle = "yellow";
-            ctx.fillRect(x, y, 1, 1);
           }
+          matrix[x][y] = 0;
+          ctx.fillStyle = "yellow";
+          ctx.fillRect(x, y, 1, 1);
         }
       }
       locations = new_locations;
