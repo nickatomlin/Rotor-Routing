@@ -4,6 +4,8 @@ html {
 body {
     height: 90%;
     float: left;
+    /* We use a table view to ensure the left navbar reaches to the bottom
+       of the website. See the display modifier in #navbar and #content. */
     display: table;
 }
 #header {
@@ -11,11 +13,13 @@ body {
     color: white;
     text-align: center;
     padding: 0.5%;
-    height: 75px;
 }
 #navbar {
     line-height: 250%;
     background-color: #f1f1f1;
+    /* There are some issues with navbar height. With no height modifier, the
+       navbar cuts off before the footer. With the height modifier, the content
+       block is sometimes unnecessarily long. */
     height: 90%;
     width: 15%;
     float: left;
@@ -36,6 +40,7 @@ body {
     padding-left: 5%;
     text-decoration: none;
 }
+/* Highlights navigation bar items when the user hovers over them. */
 #navbar li a:hover {
     background-color: #555;
     color: white;
@@ -43,6 +48,7 @@ body {
 #content {
     float: left;
     padding-left: 1%;
+    height: 90%;
     width: 75%;
     display: table-cell;
     vertical-align: top;
