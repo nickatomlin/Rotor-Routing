@@ -1,12 +1,15 @@
 var canvas;
 var ctx; // canvas object to which functions like fillRect are applied
 var timer;
-/* Defines a matrix with dimension 50 and fills it with zeroes. This matrix
+/* Defines a matrix with dimension dim and fills it with zeroes. This matrix
    is used to store the directions of arrows at each point on the grid. */
 var matrix = [];
-for(var i = 0; i < 50; i++) {
+var dim = 500;
+var center = Math.floor(dim / 2.0);
+var n = Math.ceil(500.0 / dim);
+for(var i = 0; i < dim; i++) {
     matrix[i] = [];
-    for(var j = 0; j < 50; j++) {
+    for(var j = 0; j < dim; j++) {
         matrix[i][j] = 0;
     }
 }
@@ -26,7 +29,7 @@ function update() {
      make this a selectable parameter for the website user. */
   for (var d = 0; d <= 10; d++) {
     if (d == 0) {
-      locations.push([24,24]);
+      locations.push([center,center]);
     }
     else {
       var count = locations.length;
@@ -49,7 +52,7 @@ function update() {
           }
           matrix[x][y] = 1; // changes arrow direction
           ctx.fillStyle = "blue"; // sets fill color
-          ctx.fillRect(x*10, y*10, 10, 10); // visualization for arrow direction
+          ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
         }
         else if (matrix[x][y] == 1) {
           if (x > 0) {
@@ -58,25 +61,25 @@ function update() {
           }
           matrix[x][y] = 2;
           ctx.fillStyle = "red";
-          ctx.fillRect(x*10, y*10, 10, 10);
+          ctx.fillRect(x*n, y*n, n, n);
         }
         else if (matrix[x][y] == 2) {
-          if (y < 49) {
+          if (y < dim - 1) {
             var new_item = [x, y+1];
             new_locations.push(new_item);
           }
           matrix[x][y] = 3;
           ctx.fillStyle = "green";
-          ctx.fillRect(x*10, y*10, 10, 10);
+          ctx.fillRect(x*n, y*n, n, n);
         }
         else if (matrix[x][y] == 3) {
-          if (x < 49) {
+          if (x < dim - 1) {
             var new_item = [x+1, y];
             new_locations.push(new_item);
           }
           matrix[x][y] = 0;
           ctx.fillStyle = "yellow";
-          ctx.fillRect(x*10, y*10, 10, 10);
+          ctx.fillRect(x*n, y*n, n, n);
         }
       }
       locations = new_locations; // updates locations array
