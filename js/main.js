@@ -51,7 +51,7 @@ function update() {
             new_locations.push(new_item);
           }
           matrix[x][y] = 1; // changes arrow direction
-          ctx.fillStyle = "blue"; // sets fill color
+          ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
           ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
         }
         else if (matrix[x][y] == 1) {
@@ -60,7 +60,7 @@ function update() {
             new_locations.push(new_item);
           }
           matrix[x][y] = 2;
-          ctx.fillStyle = "red";
+          ctx.fillStyle = "rgb(12,36,252)";
           ctx.fillRect(x*n, y*n, n, n);
         }
         else if (matrix[x][y] == 2) {
@@ -69,7 +69,7 @@ function update() {
             new_locations.push(new_item);
           }
           matrix[x][y] = 3;
-          ctx.fillStyle = "green";
+          ctx.fillStyle = "rgb(0,0,0)";
           ctx.fillRect(x*n, y*n, n, n);
         }
         else if (matrix[x][y] == 3) {
@@ -78,7 +78,7 @@ function update() {
             new_locations.push(new_item);
           }
           matrix[x][y] = 0;
-          ctx.fillStyle = "yellow";
+          ctx.fillStyle = "rgb(193,193,193)";
           ctx.fillRect(x*n, y*n, n, n);
         }
       }
