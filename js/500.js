@@ -1,3 +1,7 @@
+// FILE NOT CURRENTLY IN USE
+// RESULTS CAN BE SEEN HERE: https://www.youtube.com/watch?v=m7LxnPqYXuY
+// CAN BE IMPLEMENTED IN index.html
+
 var canvas;
 var ctx; // canvas object to which functions like fillRect are applied
 var timer;
