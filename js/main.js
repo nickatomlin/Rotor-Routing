@@ -27,58 +27,63 @@ function init() {
 }
 
 function update() {
-  if (particle == false) {
-    loc = [center,center];
-    particle = true;
-  }
-  var x = loc[0]; // the x-coordinate of the sand grain
-  var y = loc[1]; // the y-coordinate of the sand grain
-  /* A series of if statements checks the direction of the arrow at the
-     loc of the current grain of sand. It fills the */
-  if (matrix[x][y] == 0) {
+  /* Since setInterval is already set to the smallest amount of time possible,
+     we use a for loop to run additional iterations of update() every
+     millisecond. */
+  for (var i = 0; i < 100; i++) {
+    if (particle == false) {
+      loc = [center,center];
+      particle = true;
+    }
+    var x = loc[0]; // the x-coordinate of the sand grain
+    var y = loc[1]; // the y-coordinate of the sand grain
+    /* A series of if statements checks the direction of the arrow at the
+       loc of the current grain of sand. It fills the */
+    if (matrix[x][y] == 0) {
       /* These nested if statements remove any grains of sand that are about
          to exit the matrix. */
-    if (y > 0) {
-      loc = [x, y-1];
+      if (y > 0) {
+        loc = [x, y-1];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 1; // changes arrow direction
+      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
+      ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
     }
-    else {
-      particle = false;
+    else if (matrix[x][y] == 1) {
+      if (x > 0) {
+        loc = [x-1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 2;
+      ctx.fillStyle = "rgb(12,36,252)";
+      ctx.fillRect(x*n, y*n, n, n);
     }
-    matrix[x][y] = 1; // changes arrow direction
-    ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
-    ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
-  }
-  else if (matrix[x][y] == 1) {
-    if (x > 0) {
-      loc = [x-1, y];
+    else if (matrix[x][y] == 2) {
+      if (y < dim - 1) {
+        loc = [x, y+1];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 3;
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(x*n, y*n, n, n);
     }
-    else {
-      particle = false;
+    else if (matrix[x][y] == 3) {
+      if (x < dim - 1) {
+        loc = [x+1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 0;
+      ctx.fillStyle = "rgb(193,193,193)";
+      ctx.fillRect(x*n, y*n, n, n);
     }
-    matrix[x][y] = 2;
-    ctx.fillStyle = "rgb(12,36,252)";
-    ctx.fillRect(x*n, y*n, n, n);
-  }
-  else if (matrix[x][y] == 2) {
-    if (y < dim - 1) {
-      loc = [x, y+1];
-    }
-    else {
-      particle = false;
-    }
-    matrix[x][y] = 3;
-    ctx.fillStyle = "rgb(0,0,0)";
-    ctx.fillRect(x*n, y*n, n, n);
-  }
-  else if (matrix[x][y] == 3) {
-    if (x < dim - 1) {
-      loc = [x+1, y];
-    }
-    else {
-      particle = false;
-    }
-    matrix[x][y] = 0;
-    ctx.fillStyle = "rgb(193,193,193)";
-    ctx.fillRect(x*n, y*n, n, n);
   }
 }
