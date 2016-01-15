@@ -4,10 +4,13 @@ var timer;
 /* Defines a matrix with dimension dim and fills it with zeroes. This matrix
    is used to store the directions of arrows at each point on the grid. */
 var matrix = [];
-var dim = 500;
+var dim = 500; // matrix size, currently 500x500
 var center = Math.floor(dim / 2.0);
-var n = Math.ceil(500.0 / dim);
-var particle = false;
+var n = Math.ceil(500.0 / dim); // the size of squares in the visualization
+var particle = true; // whether or not a particle exists in the matrix
+var loc = [center,center]; // location of current particle
+var exits = 0; // number of times a particle exits the matrix
+var returns = 0; // number of times a particle returns to the origin
 
 for (var i = 0; i < dim; i++) {
   matrix[i] = [];
@@ -21,6 +24,7 @@ for (var i = 0; i < dim; i++) {
 
 function init() {
   canvas = document.getElementById("canvas");
+  ctr = document.getElementById("counter");
   ctx = canvas.getContext("2d");
   timer = setInterval(update, 1); // calls update every millisecond
   return timer;
@@ -34,6 +38,7 @@ function update() {
     if (particle == false) {
       loc = [center,center];
       particle = true;
+      exits += 1;
     }
     var x = loc[0]; // the x-coordinate of the sand grain
     var y = loc[1]; // the y-coordinate of the sand grain
@@ -86,4 +91,5 @@ function update() {
       ctx.fillRect(x*n, y*n, n, n);
     }
   }
+  ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
 }
