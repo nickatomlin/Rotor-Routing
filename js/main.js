@@ -90,6 +90,9 @@ function update() {
       ctx.fillStyle = "rgb(193,193,193)";
       ctx.fillRect(x*n, y*n, n, n);
     }
+    if (loc.toString() == [249, 249].toString()) {
+      returns += 1;
+    }
+    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
   }
-  ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
 }
