@@ -38,7 +38,7 @@ function configure(num){
     }
   }
 }
-configure(2);
+configure(0);
 
 /* An array of loc of sand grains, represented by their lattice points.
    Initialized as empty, but may look like [[24,24], [32,45]] after update has
