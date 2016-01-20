@@ -12,12 +12,34 @@ var loc = [center,center]; // location of current particle
 var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
-for (var i = 0; i < dim; i++) {
-  matrix[i] = [];
-  for (var j = 0; j < dim; j++) {
-    matrix[i][j] = 0;
+function configure(num){
+  if (num == 0) {
+    for (var i = 0; i < dim; i++) {
+      matrix[i] = [];
+      for (var j = 0; j < dim; j++) {
+        matrix[i][j] = 0;
+      }
+    }
+  }
+  if (num == 1) {
+    for (var i = 0; i < dim; i++) {
+      matrix[i] = [];
+      for (var j = 0; j < dim; j++) {
+        matrix[i][j] = (j % 2) * 2;
+      }
+    }
+  }
+  if (num == 2) {
+    for (var i = 0; i < dim; i++) {
+      matrix[i] = [];
+      for (var j = 0; j < dim; j++) {
+        matrix[i][j] = (j % 4);
+      }
+    }
   }
 }
+configure(2);
+
 /* An array of loc of sand grains, represented by their lattice points.
    Initialized as empty, but may look like [[24,24], [32,45]] after update has
    been repeatedly called. */
