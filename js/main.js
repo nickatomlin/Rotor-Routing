@@ -66,7 +66,7 @@ function update() {
     var y = loc[1]; // the y-coordinate of the sand grain
     /* A series of if statements checks the direction of the arrow at the
        loc of the current grain of sand. It fills the */
-    if (matrix[x][y] == 0) {
+    if (matrix[x][y] == 0) { // UP
       /* These nested if statements remove any grains of sand that are about
          to exit the matrix. */
       if (y > 0) {
@@ -79,7 +79,7 @@ function update() {
       ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
       ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
     }
-    else if (matrix[x][y] == 1) {
+    else if (matrix[x][y] == 1) { // LEFT
       if (x > 0) {
         loc = [x-1, y];
       }
@@ -90,7 +90,7 @@ function update() {
       ctx.fillStyle = "rgb(12,36,252)";
       ctx.fillRect(x*n, y*n, n, n);
     }
-    else if (matrix[x][y] == 2) {
+    else if (matrix[x][y] == 2) { // DOWN
       if (y < dim - 1) {
         loc = [x, y+1];
       }
@@ -101,7 +101,7 @@ function update() {
       ctx.fillStyle = "rgb(0,0,0)";
       ctx.fillRect(x*n, y*n, n, n);
     }
-    else if (matrix[x][y] == 3) {
+    else if (matrix[x][y] == 3) { // RIGHT
       if (x < dim - 1) {
         loc = [x+1, y];
       }
@@ -112,7 +112,7 @@ function update() {
       ctx.fillStyle = "rgb(193,193,193)";
       ctx.fillRect(x*n, y*n, n, n);
     }
-    if (loc.toString() == [249, 249].toString()) {
+    if (loc.toString() == [center, center].toString()) {
       returns += 1;
     }
     ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
