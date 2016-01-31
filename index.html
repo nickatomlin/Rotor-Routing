@@ -5,7 +5,7 @@
   </head>
   <!-- Starts the animation when the page loads. In the future, this should be
        replaced with a "Start Animation" button. -->
-  <body onload="init(2);">
+  <body>
     <div id="header">
       <h1> Rotor Routing for Sandpile Dynamics</h1>
     </div>
@@ -27,14 +27,19 @@
             Eu vim legere indoctum. In veri dicam definitionem sed, at case
             latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
       </div>
-      <div id="visual">
-        <!-- Animations found in js directory. To use a different animation,
-             for example the 500x500 version, simply change the file name to
-             script src="js/500.js" or something along those lines. -->
-        <canvas id="canvas" width="500px" height="500px">Your browser does not
-                                                         support the HTML5
-                                                         canvas tag.</canvas>
-        <script src="js/main.js"></script>
+      <div id="interactive">
+        <div id="visual">
+          <!-- Animations found in js directory. To use a different animation,
+               for example the 500x500 version, simply change the file name to
+               script src="js/500.js" or something along those lines. -->
+          <canvas id="canvas" width="500px" height="500px">Your browser does not
+                                                           support the HTML5
+                                                           canvas tag.</canvas>
+          <script src="js/main.js"></script>
+        </div>
+        <div id="form">
+          <button onclick="init(0)">Start</button>
+        </div>
       </div>
       <div id="counter"></div>
       <div id="procedure">

@@ -53,6 +53,17 @@ body {
     display: table-cell;
     vertical-align: top;
 }
+#interactive {
+  display: flex;
+  flex: 1;
+}
+#visual {
+  border: 1px solid #000000;
+  width: 500px;
+}
+#form {
+  width: 10%;
+}
 #footer {
     background-color: black;
     color: white;
