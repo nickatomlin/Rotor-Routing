@@ -38,13 +38,13 @@ function configure(num){
     }
   }
 }
-configure(0);
 
 /* An array of loc of sand grains, represented by their lattice points.
    Initialized as empty, but may look like [[24,24], [32,45]] after update has
    been repeatedly called. */
 
-function init() {
+function init(num) {
+  configure(num);
   canvas = document.getElementById("canvas");
   ctr = document.getElementById("counter");
   ctx = canvas.getContext("2d");
