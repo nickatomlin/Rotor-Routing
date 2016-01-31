@@ -12,7 +12,7 @@ var loc = [center,center]; // location of current particle
 var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
-function configure(num){
+function configure(num) {
   if (num == 0) {
     for (var i = 0; i < dim; i++) {
       matrix[i] = [];
@@ -43,8 +43,10 @@ function configure(num){
    Initialized as empty, but may look like [[24,24], [32,45]] after update has
    been repeatedly called. */
 
-function init(num) {
-  configure(num);
+function init() {
+  var form_elements = document.getElementById("config_form").elements;
+  var con = form_elements["config"].value;
+  configure(con);
   canvas = document.getElementById("canvas");
   ctr = document.getElementById("counter");
   ctx = canvas.getContext("2d");

@@ -38,7 +38,12 @@
           <script src="js/main.js"></script>
         </div>
         <div id="form">
-          <button onclick="init(0)">Start</button>
+          <form id="config_form">
+            <input type="radio" name="config" value="0" checked>All Up<br>
+            <input type="radio" name="config" value="1">Alternating Up/Down<br>
+            <input type="radio" name="config" value="2"> Alternations Directions
+          </form>
+          <button onclick="init()">Start</button>
         </div>
       </div>
       <div id="counter"></div>
