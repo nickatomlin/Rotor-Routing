@@ -18,6 +18,7 @@ function reset() {
   matrix = [];
   ctx.fillStyle = "rgb(255,255,255)";
   ctx.fillRect(0, 0, 500, 500);
+  ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
 }
 
 function configure(num) {
