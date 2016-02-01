@@ -12,6 +12,14 @@ var matrix = [];
 var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
+function reset() {
+  exits = 0;
+  returns = 0;
+  matrix = [];
+  ctx.fillStyle = "rgb(255,255,255)";
+  ctx.fillRect(0, 0, 500, 500);
+}
+
 function configure(num) {
   if (num == 0) {
     for (var i = 0; i < dim; i++) {
@@ -48,9 +56,9 @@ function nearest_divisor(num) {
   var best_dif = 500;
   var best_div = 50;
   for (var i = 0; i < divisors.length; i++) {
-    if (divisors[i] - num < best_dif) {
+    if (Math.abs(divisors[i] - num) < best_dif) {
       best_div = divisors[i];
-      best_dif = divisors[i] - num;
+      best_dif = Math.abs(divisors[i] - num);
     }
   }
   return best_div;
