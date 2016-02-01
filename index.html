@@ -39,9 +39,12 @@
         </div>
         <div id="form">
           <form id="config_form">
-            <input type="radio" name="config" value="0" checked>All Up<br>
-            <input type="radio" name="config" value="1">Alternating Up/Down<br>
-            <input type="radio" name="config" value="2"> Alternations Directions
+            Choose a preset configuration: <br>
+            <input type="radio" name="config" value="0" checked> All Up<br>
+            <input type="radio" name="config" value="1"> Alternating Up/Down<br>
+            <input type="radio" name="config" value="2"> Alternating Directions<br><br>
+            Matrix size: <br>
+            - <input type="range" name="size" min="50" max="500" value="500" step="1"> + <br><br>
           </form>
           <button onclick="init()">Start</button>
         </div>

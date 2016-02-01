@@ -4,11 +4,11 @@ var timer;
 /* Defines a matrix with dimension dim and fills it with zeroes. This matrix
    is used to store the directions of arrows at each point on the grid. */
 var matrix = [];
-var dim = 500; // matrix size, currently 500x500
-var center = Math.floor(dim / 2.0);
-var n = Math.ceil(500.0 / dim); // the size of squares in the visualization
-var particle = true; // whether or not a particle exists in the matrix
-var loc = [center,center]; // location of current particle
+// var dim = 500; // matrix size, currently 500x500
+// var center = Math.floor(dim / 2.0);
+// var n = Math.ceil(500.0 / dim); // the size of squares in the visualization
+// var particle = true; // whether or not a particle exists in the matrix
+// var loc = [center,center]; // location of current particle
 var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
@@ -43,9 +43,27 @@ function configure(num) {
    Initialized as empty, but may look like [[24,24], [32,45]] after update has
    been repeatedly called. */
 
+function nearest_divisor(num) {
+  divisors = [50, 100, 125, 250, 500];
+  var best_dif = 500;
+  var best_div = 50;
+  for (var i = 0; i < divisors.length; i++) {
+    if (divisors[i] - num < best_dif) {
+      best_div = divisors[i];
+      best_dif = divisors[i] - num;
+    }
+  }
+  return best_div;
+}
+
 function init() {
   var form_elements = document.getElementById("config_form").elements;
   var con = form_elements["config"].value;
+  dim = nearest_divisor(form_elements["size"].value); // matrix size, currently 500x500
+  center = Math.floor(dim / 2.0);
+  n = (500.0 / dim); // the size of squares in the visualization
+  particle = true; // whether or not a particle exists in the matrix
+  loc = [center,center]; // location of current particle
   configure(con);
   canvas = document.getElementById("canvas");
   ctr = document.getElementById("counter");

@@ -63,6 +63,8 @@ body {
 }
 #form {
   width: 30%;
+  font-size: 12px;
+  padding-left: 10px;
 }
 #footer {
     background-color: black;
