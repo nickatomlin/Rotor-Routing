@@ -7,7 +7,7 @@
        replaced with a "Start Animation" button. -->
   <body>
     <div id="header">
-      <h1> Rotor Routing for Sandpile Dynamics</h1>
+      <h1> Rotor Routing</h1>
     </div>
     <div id="navbar">
       <ul>
@@ -43,8 +43,20 @@
             <input type="radio" name="config" value="0" checked> All Up<br>
             <input type="radio" name="config" value="1"> Alternating Up/Down<br>
             <input type="radio" name="config" value="2"> Alternating Directions<br><br>
-            Matrix size: <br>
+            Matrix Size: <br>
             - <input type="range" name="size" min="50" max="500" value="250" step="1"> + <br><br>
+            Visual Speed: <br>
+            - <input type="range" name="speed" min="1" max="200" value="100" step="1"> + <br><br>
+            Surface Type:
+            <select name="surface">
+              <option value="0">Bounded Plane</option>
+              <option value="1">Cylinder</option>
+              <option value="2">M&ouml;bius Strip</option>
+              <option value="3">Sphere</option>
+              <option value="4">Torus</option>
+              <option value="5">Klein Bottle</option>
+              <option value="6">Real Projective Plane</option>
+            </select>
           </form>
           <button onclick="init()">Start</button>
           <button onclick="reset()">Reset</button>

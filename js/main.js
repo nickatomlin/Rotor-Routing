@@ -13,6 +13,8 @@ var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
 function reset() {
+  clearInterval(timer);
+  timer = 0;
   exits = 0;
   returns = 0;
   matrix = [];
@@ -66,8 +68,11 @@ function nearest_divisor(num) {
 }
 
 function init() {
+  var matrix = [];
   var form_elements = document.getElementById("config_form").elements;
   var con = form_elements["config"].value;
+  speed = form_elements["speed"].value;
+  var surface = form_elements["surface"].value;
   dim = nearest_divisor(form_elements["size"].value); // matrix size, currently 500x500
   center = Math.floor(dim / 2.0);
   n = (500.0 / dim); // the size of squares in the visualization
@@ -77,7 +82,27 @@ function init() {
   canvas = document.getElementById("canvas");
   ctr = document.getElementById("counter");
   ctx = canvas.getContext("2d");
-  timer = setInterval(update, 1); // calls update every millisecond
+  if (surface == 0) {
+    timer = setInterval(update, 1); // calls update every millisecond
+  }
+  else if (surface == 1) {
+    timer = setInterval(update_cylinder, 1);
+  }
+  else if (surface == 2) {
+    timer = setInterval(update_mobius, 1);
+  }
+  else if (surface == 3) {
+    timer = setInterval(update_sphere, 1);
+  }
+  else if (surface == 4) {
+    timer = setInterval(update_torus, 1);
+  }
+  else if (surface == 5) {
+    timer = setInterval(update_klein, 1);
+  }
+  else if (surface == 6) {
+    timer = setInterval(update_rpp, 1);
+  }
   return timer;
 }
 
@@ -85,7 +110,7 @@ function update() {
   /* Since setInterval is already set to the smallest amount of time possible,
      we use a for loop to run additional iterations of update() every
      millisecond. */
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < speed; i++) {
     if (particle == false) {
       loc = [center,center];
       particle = true;
@@ -136,6 +161,207 @@ function update() {
       }
       else {
         particle = false;
+      }
+      matrix[x][y] = 0;
+      ctx.fillStyle = "rgb(193,193,193)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    if (loc.toString() == [center, center].toString()) {
+      returns += 1;
+    }
+    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
+  }
+}
+
+function update_cylinder() {
+  /* Since setInterval is already set to the smallest amount of time possible,
+     we use a for loop to run additional iterations of update() every
+     millisecond. */
+  for (var i = 0; i < speed; i++) {
+    if (particle == false) {
+      loc = [center,center];
+      particle = true;
+      exits += 1;
+    }
+    var x = loc[0]; // the x-coordinate of the sand grain
+    var y = loc[1]; // the y-coordinate of the sand grain
+    /* A series of if statements checks the direction of the arrow at the
+       loc of the current grain of sand. It fills the */
+    if (matrix[x][y] == 0) { // UP
+      /* These nested if statements remove any grains of sand that are about
+         to exit the matrix. */
+      if (y > 0) {
+        loc = [x, y-1];
+      }
+      else {
+        loc = [x, dim-1];
+      }
+      matrix[x][y] = 1; // changes arrow direction
+      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
+      ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
+    }
+    else if (matrix[x][y] == 1) { // LEFT
+      if (x > 0) {
+        loc = [x-1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 2;
+      ctx.fillStyle = "rgb(12,36,252)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 2) { // DOWN
+      if (y < dim - 1) {
+        loc = [x, y+1];
+      }
+      else {
+        loc = [x, 0];
+      }
+      matrix[x][y] = 3;
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 3) { // RIGHT
+      if (x < dim - 1) {
+        loc = [x+1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 0;
+      ctx.fillStyle = "rgb(193,193,193)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    if (loc.toString() == [center, center].toString()) {
+      returns += 1;
+    }
+    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
+  }
+}
+
+function update_mobius() {
+  /* Since setInterval is already set to the smallest amount of time possible,
+     we use a for loop to run additional iterations of update() every
+     millisecond. */
+  for (var i = 0; i < speed; i++) {
+    if (particle == false) {
+      loc = [center,center];
+      particle = true;
+      exits += 1;
+    }
+    var x = loc[0]; // the x-coordinate of the sand grain
+    var y = loc[1]; // the y-coordinate of the sand grain
+    /* A series of if statements checks the direction of the arrow at the
+       loc of the current grain of sand. It fills the */
+    if (matrix[x][y] == 0) { // UP
+      /* These nested if statements remove any grains of sand that are about
+         to exit the matrix. */
+      if (y > 0) {
+        loc = [x, y-1];
+      }
+      else {
+        loc = [dim-x, dim-1];
+      }
+      matrix[x][y] = 1; // changes arrow direction
+      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
+      ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
+    }
+    else if (matrix[x][y] == 1) { // LEFT
+      if (x > 0) {
+        loc = [x-1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 2;
+      ctx.fillStyle = "rgb(12,36,252)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 2) { // DOWN
+      if (y < dim - 1) {
+        loc = [x, y+1];
+      }
+      else {
+        loc = [dim-x, 0];
+      }
+      matrix[x][y] = 3;
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 3) { // RIGHT
+      if (x < dim - 1) {
+        loc = [x+1, y];
+      }
+      else {
+        particle = false;
+      }
+      matrix[x][y] = 0;
+      ctx.fillStyle = "rgb(193,193,193)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    if (loc.toString() == [center, center].toString()) {
+      returns += 1;
+    }
+    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
+  }
+}
+
+function update_torus() {
+  /* Since setInterval is already set to the smallest amount of time possible,
+     we use a for loop to run additional iterations of update() every
+     millisecond. */
+  for (var i = 0; i < speed; i++) {
+    if (particle == false) {
+      loc = [center,center];
+      particle = true;
+      exits += 1;
+    }
+    var x = loc[0]; // the x-coordinate of the sand grain
+    var y = loc[1]; // the y-coordinate of the sand grain
+    /* A series of if statements checks the direction of the arrow at the
+       loc of the current grain of sand. It fills the */
+    if (matrix[x][y] == 0) { // UP
+      /* These nested if statements remove any grains of sand that are about
+         to exit the matrix. */
+      if (y > 0) {
+        loc = [x, y-1];
+      }
+      else {
+        loc = [x, dim-1]
+      }
+      matrix[x][y] = 1; // changes arrow direction
+      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
+      ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
+    }
+    else if (matrix[x][y] == 1) { // LEFT
+      if (x > 0) {
+        loc = [x-1, y];
+      }
+      else {
+        loc = [dim-1, y]
+      }
+      matrix[x][y] = 2;
+      ctx.fillStyle = "rgb(12,36,252)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 2) { // DOWN
+      if (y < dim - 1) {
+        loc = [x, y+1];
+      }
+      else {
+        loc = [x, 0];
+      }
+      matrix[x][y] = 3;
+      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillRect(x*n, y*n, n, n);
+    }
+    else if (matrix[x][y] == 3) { // RIGHT
+      if (x < dim - 1) {
+        loc = [x+1, y];
+      }
+      else {
+        loc = [0, y];
       }
       matrix[x][y] = 0;
       ctx.fillStyle = "rgb(193,193,193)";
