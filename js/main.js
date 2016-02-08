@@ -12,6 +12,11 @@ var matrix = [];
 var exits = 0; // number of times a particle exits the matrix
 var returns = 0; // number of times a particle returns to the origin
 
+function update_speed() {
+  var form_elements = document.getElementById("config_form").elements;
+  speed = form_elements["speed"].value;
+}
+
 function reset() {
   clearInterval(timer);
   timer = 0;
@@ -69,8 +74,10 @@ function nearest_divisor(num) {
 
 function init() {
   var matrix = [];
+  clearInterval(timer);
+  timer = 0;
   var form_elements = document.getElementById("config_form").elements;
-  var con = form_elements["config"].value;
+  con = form_elements["config"].value;
   speed = form_elements["speed"].value;
   var surface = form_elements["surface"].value;
   dim = nearest_divisor(form_elements["size"].value); // matrix size, currently 500x500
