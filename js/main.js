@@ -53,6 +53,14 @@ function configure(num) {
       }
     }
   }
+  if (num == 3) {
+    for (var i = 0; i < dim; i++) {
+      matrix[i] = [];
+      for (var j = 0; j < dim; j++) {
+        matrix[i][j] = Math.floor(100 * Math.random()) % 4;
+      }
+    }
+  }
 }
 
 /* An array of loc of sand grains, represented by their lattice points.
