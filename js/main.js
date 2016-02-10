@@ -318,7 +318,7 @@ function update_mobius() {
     if (loc.toString() == [center, center].toString()) {
       returns += 1;
     }
-    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns  + " | Location: " + loc.toString();
+    ctr.innerHTML = "Exits: " + exits + " | Returns to Origin: " + returns;
   }
 }
 
