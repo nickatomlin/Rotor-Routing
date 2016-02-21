@@ -135,7 +135,7 @@ function update() {
     var y = loc[1]; // the y-coordinate of the sand grain
     /* A series of if statements checks the direction of the arrow at the
        loc of the current grain of sand. It fills the */
-    if (matrix[x][y] == 0) { // UP
+    if (matrix[x][y] == 0) { // UP-NORTH
       /* These nested if statements remove any grains of sand that are about
          to exit the matrix. */
       if (y > 0) {
@@ -145,10 +145,10 @@ function update() {
         particle = false;
       }
       matrix[x][y] = 1; // changes arrow direction
-      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color
+      ctx.fillStyle = "rgb(253,14,28)"; // sets fill color to RED
       ctx.fillRect(x*n, y*n, n, n); // visualization for arrow direction
     }
-    else if (matrix[x][y] == 1) { // LEFT
+    else if (matrix[x][y] == 1) { // LEFT-WEST
       if (x > 0) {
         loc = [x-1, y];
       }
@@ -156,7 +156,7 @@ function update() {
         particle = false;
       }
       matrix[x][y] = 2;
-      ctx.fillStyle = "rgb(12,36,252)";
+      ctx.fillStyle = "rgb(12,36,252)"; // sets fill color to BLUE
       ctx.fillRect(x*n, y*n, n, n);
     }
     else if (matrix[x][y] == 2) { // DOWN
@@ -167,7 +167,7 @@ function update() {
         particle = false;
       }
       matrix[x][y] = 3;
-      ctx.fillStyle = "rgb(0,0,0)";
+      ctx.fillStyle = "rgb(0,0,0)"; // sets fill color to BLACK
       ctx.fillRect(x*n, y*n, n, n);
     }
     else if (matrix[x][y] == 3) { // RIGHT
@@ -178,7 +178,7 @@ function update() {
         particle = false;
       }
       matrix[x][y] = 0;
-      ctx.fillStyle = "rgb(193,193,193)";
+      ctx.fillStyle = "rgb(193,193,193)"; // sets fill color to GREY
       ctx.fillRect(x*n, y*n, n, n);
     }
     if (loc.toString() == [center, center].toString()) {
