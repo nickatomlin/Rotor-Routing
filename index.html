@@ -17,15 +17,14 @@
       <li><a href="#analysis">Analysis</a></li>
       <li><a href="#conjectures">Conjectures</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
     </div>
       <!-- Most of body wrapped in "content" div for ease of CSS. -->
     <div id="content">
       <div id="overview">
         <h2> Overview </h2>
-        <p> Rotor routing is a derandomized form of the random walk.
-            Here, we have visualized rotor routing on &integers;<sup>2</sup>,
-            as well as a variety of surfaces, e.g., </p>
+        <p> Rotor routing is a deterministic version of the random walk that can be represented by the motion of particles along a simple digraph as seen in [1]. Whenever a particle exits a node along a path (or rotor), the path points to a new head. In this ongoing research project, we have visualized rotor routing on &integers;<sup>2</sup> with a variety of initial configurations. We have also created parameters for the size and speed of the visualization, as well as the surface (e.g., torus, projective plane, Klein bottle, etc.) it is projected onto. From these results we hope to form various conjectures about rotor routing. </p>
       </div>
       <div id="interactive">
         <div id="visual">
@@ -39,10 +38,10 @@
         </div>
         <div id="form">
           <form id="config_form">
-            Choose a preset configuration: <br>
-            <input type="radio" name="config" value="0" checked> All Up<br>
-            <input type="radio" name="config" value="1"> Alternating Up/Down<br>
-            <input type="radio" name="config" value="2"> Alternating Directions<br>
+            Choose an initial configuration: <br>
+            <input type="radio" name="config" value="0" checked> All North<br>
+            <input type="radio" name="config" value="1"> Alternating North/South<br>
+            <!-- <input type="radio" name="config" value="2"> Alternating Directions<br> -->
             <input type="radio" name="config" value="3"> Random<br><br>
             Matrix Size: <br>
             - <input type="range" name="size" min="50" max="500" value="250" step="1"> + <br><br>
@@ -67,30 +66,47 @@
       <div id="counter"></div>
       <div id="procedure">
         <h2> Procedure </h2>
-        <p> Lorem ipsum dolor sit amet, te quo doming voluptatum reprehendunt.
-            Eu vim legere indoctum. In veri dicam definitionem sed, at case
-            latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
+        <p> We have represented a finite subset of &integers;<sup>2</sup> as a square matrix of rotors. A rotor on a lattice point can be directed in any one of the four cardinal directions: North, West, South, or East. Before the visualization begins, the matrix is configured with preset (or optionally random) rotor directions. The default configuration used here places all rotors in the North position. </p>
+        <p>After initializing the matrix configuration, we place a particle at the center of the matrix and track its movement along the directed graph. Our particle travels along the direction of the rotors, which are then each rotated 90&deg; counter-clockwise (following the "prospective convention" defined in [2]). For example, a particle starting in the "All North" configuration would escape to infinity in the upwards direction, leaving a half-column of rotors facing West. Visited rotors change colors to represent their current direction as follows:</p>
+        <ul>
+          <li>Grey - North</li>
+          <li>Red - West</li>
+          <li>Blue - South</li>
+          <li>Black - East</li>
+        </ul>
+        <p>When a particle escapes to infinity (or exits the border of this visualization), a new particle is placed at the center of the matrix and the visualization continues. We have projected this visualization onto a variety of surfaces by considering the fundamental polygons of tori, projective planes, Klein bottles, etc. For example, when a particle exits the upper-side of the torus, it reappears at the same point along the bottom of the torus. In these cases, the exit counter will not increase as it does in the bounded plane option.</p>
+        <p>See full implementation here: <a href="https://github.com/Designist/Rotor-Routing">https://github.com/Designist/Rotor-Routing</a></p>
       </div>
       <div id="analysis">
         <h2> Analysis </h2>
-        <p> Lorem ipsum dolor sit amet, te quo doming voluptatum reprehendunt.
-            Eu vim legere indoctum. In veri dicam definitionem sed, at case
-            latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
+        <p>All escapes from single-direction configurations appear to follow the direction of the initial rotors. Moreover, as the visualization becomes large, we notice a recurring octagonal pattern where each rotor direction represents two adjacent sides of the octagon. To see this occurence, choose the "All North" configuration on the bounded plane, with maximum matrix size and visual speed.</p>
+        <p>However, not all escapes to infinity occur in a similar manner. In the "Alternating North/South" configuration, all infinite escapes travel West or East, moving two columns along at once. To understand how this works, set the configuration to "Alternating North/South" minimize matrix size and visual speed. Again, set the surface type to "Bounded Plane" and press start.</p>
+        <p>The four compact surfaces (sphere, torus, Klein bottle, real projective plane) have a finite number of possible configurations determined by the matrix size. Because of this, any initial configuration (including random) on a compact surface will eventually form an infinitely repeating loop. However, since each point on the loop must be visited an infinite number of times, its neighbors must also be visited an infinite number of times, and so on. Applying this logic repeatedly, every point in the matrix must be visited an infinite number of times. To visualize this, choose any configuration on a compact surface. Minimize matrix size and visual speed, and let the visualization run until an infinite loop is obvious. Then lower the speed significantly and press "Update Speed."</p>
       </div>
       <div id="conjectures">
         <h2> Conjectures </h2>
-        <p> Conjecture #1 - A random configuration will always have a sand particle return to the origin. <br>
-              Corollary - In a random configuration, any point will be visited at least once by a sand particle.</p>
+        <ul>
+          <li>The rotor walk on a random configuration in &integers;<sup>2</sup> is recurrent (returning to the origin infinitely often). See discussion of this problem in [3].</li>
+          <li>The octagonal pattern described above appears exactly in rotor walks on cylinders and M&ouml;bius strips with the single-direction configuration.</li>
+          <li>As the octagonal pattern grows large, the distribution of each color inside it approaches 1/4.</li>
+        </ul>
       </div>
       <div id="conclusion">
         <h2> Conclusion </h2>
-        <p> Lorem ipsum dolor sit amet, te quo doming voluptatum reprehendunt.
-            Eu vim legere indoctum. In veri dicam definitionem sed, at case
-            latine nec. Eu mea movet salutatus. At vero ignota vel. </p>
+        <p> Our ongoing visualization project supports the above conjectures, as well as various statements about the escape rates of rotor walks found in [2]. In the future, we hope to add additional configurations (such as the recurrent configuration described in [4]), as well as tools for analyzing the distribution of rotor directions. If you have any suggestions for improvement or other thoughts on this project, please contact us at <a href="mailto:nicholas@brown.edu?Subject=Rotor%20Routing" target="_top">nicholas@brown.edu</a>.</p>
+      </div>
+      <div id="references">
+        <h2> References </h2>
+        <ul style="list-style-type:none;">
+          <li>[1] A. E. Holroyd, L. Levine, K. M&eacute;z&aacute;ros, Y. Peres, J. Propp, and D. B. Wilson. Chip-Firing and Rotor-Routing on Directed Graphs, 2008. <a href="http://arxiv.org/abs/0801.3306">http://arxiv.org/abs/0801.3306</a>.</li>
+          <li>[2] L. Florescu, S. Ganguly, L. Levine, Y. Peres. Escape rates for rotor walk in Z^d, 2013. <a href="http://arxiv.org/abs/1301.3521">http://arxiv.org/abs/1301.3521</a>.</li>
+          <li>[3] L. Levine and Y. Peres. Laplacian Growth, Sandpiles and Scaling Limits, 2015. <a href="http://www.ams.org/meetings/currentevents2016final.pdf">http://www.ams.org/meetings/currentevents2016final.pdf</a>.</li>
+          <li>[4] O. Angel and A. E. Holroyd. Recurrent Rotor-Router Configurations, 2011. <a href="http://arxiv.org/abs/1101.2484">http://arxiv.org/abs/1101.2484</a></li>
+        </ul>
       </div>
     </div>
     <div id="footer">
-      Copyright 2015 by Taro Shima and Nicholas Tomlin.
+      Copyright 2016 by Taro Shima and Nicholas Tomlin.
     </div>
   </body>
 </html>

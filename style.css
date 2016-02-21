@@ -2,7 +2,7 @@ html {
     font-family: "Lucida Grande", Arial, sans-serif;
 }
 body {
-    height: 90%;
+    height: 95%;
     float: left;
     /* We use a table view to ensure the left navbar reaches to the bottom
        of the website. See the display modifier in #navbar and #content. */
@@ -20,7 +20,7 @@ body {
     /* There are some issues with navbar height. With no height modifier, the
        navbar cuts off before the footer. With the height modifier, the content
        block is sometimes unnecessarily long. */
-    height: 90%;
+    height: 95%;
     width: 15%;
     float: left;
     padding: 2%;
@@ -48,7 +48,7 @@ body {
 #content {
     float: left;
     padding-left: 1%;
-    height: 90%;
+    height: 95%;
     width: 75%;
     display: table-cell;
     vertical-align: top;
@@ -72,4 +72,15 @@ body {
     clear: both;
     text-align: center;
     padding: 0.5%;
+}
+
+sup, sub {
+   vertical-align: baseline;
+   position: relative;
+   top: -0.4em;
+}
+sub { top: 0.4em; }
+
+#references ul li {
+margin-left:-20px;
 }
