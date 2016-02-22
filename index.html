@@ -11,7 +11,8 @@
     </div>
     <div id="navbar">
       <ul>
-      <li><a class="active" href="#overview">Overview</a></li>
+      <li><a class="active" href="#introduction">Introduction</a></li>
+      <li><a href="#overview">Overview</a></li>
       <li><a href="#visual">Visual</a></li>
       <li><a href="#procedure">Procedure</a></li>
       <li><a href="#analysis">Analysis</a></li>
@@ -22,9 +23,13 @@
     </div>
       <!-- Most of body wrapped in "content" div for ease of CSS. -->
     <div id="content">
+      <div id="introduction">
+        <h2>Introduction</h2>
+        <p>This is a mathematical visualization project by Taro Shima and Nicholas Tomlin, freshmen mathematics concentrators at Brown University. The project was informally supervised by assistant professor Melody Chan.</p>
+      </div>
       <div id="overview">
         <h2> Overview </h2>
-        <p> Rotor routing is a deterministic version of the random walk that can be represented by the motion of particles along a simple digraph as seen in [1]. Whenever a particle exits a node along a path (or rotor), the path points to a new head. In this ongoing research project, we have visualized rotor routing on &integers;<sup>2</sup> with a variety of initial configurations. We have also created parameters for the size and speed of the visualization, as well as the surface (e.g., torus, projective plane, Klein bottle, etc.) it is projected onto. From these results we hope to form various conjectures about rotor routing. </p>
+        <p>Rotor routing is a deterministic version of the random walk that can be represented by the motion of particles along a simple digraph as seen in [1]. Whenever a particle exits a node along a path (or rotor), the path points to a new head. In this ongoing research project, we have visualized rotor routing on &integers;<sup>2</sup> with a variety of initial configurations. We have also created parameters for the size and speed of the visualization, as well as the surface (e.g., torus, projective plane, Klein bottle, etc.) it is projected onto. From these results we hope to form various conjectures about rotor routing. </p>
       </div>
       <div id="interactive">
         <div id="visual">
@@ -66,8 +71,8 @@
       <div id="counter"></div>
       <div id="procedure">
         <h2> Procedure </h2>
-        <p> We have represented a finite subset of &integers;<sup>2</sup> as a square matrix of rotors. A rotor on a lattice point can be directed in any one of the four cardinal directions: North, West, South, or East. Before the visualization begins, the matrix is configured with preset (or optionally random) rotor directions. The default configuration used here places all rotors in the North position. </p>
-        <p>After initializing the matrix configuration, we place a particle at the center of the matrix and track its movement along the directed graph. Our particle travels along the direction of the rotors, which are then each rotated 90&deg; counter-clockwise (following the "prospective convention" defined in [2]). For example, a particle starting in the "All North" configuration would escape to infinity in the upwards direction, leaving a half-column of rotors facing West. Visited rotors change colors to represent their current direction as follows:</p>
+        <p>We have represented a finite subset of &integers;<sup>2</sup> as a square matrix of rotors. A rotor on a lattice point can be directed in any one of the four cardinal directions: north, west, south, or east. Before the visualization begins, the matrix is configured with preset (or optionally random) rotor directions. The default configuration used here places all rotors in the north position. </p>
+        <p>After initializing the matrix configuration, we place a particle at the center of the matrix and track its movement along the directed graph. Our particle travels along the direction of the rotors, which are then each rotated 90&deg; counter-clockwise (following the "prospective convention" defined in [2]). For example, a particle starting in the "All North" configuration would escape to infinity in the upwards direction, leaving a half-column of rotors facing west. Visited rotors change colors to represent their current direction as follows:</p>
         <ul>
           <li>Grey - North</li>
           <li>Red - West</li>
@@ -80,15 +85,15 @@
       <div id="analysis">
         <h2> Analysis </h2>
         <p>All escapes from single-direction configurations appear to follow the direction of the initial rotors. Moreover, as the visualization becomes large, we notice a recurring octagonal pattern where each rotor direction represents two adjacent sides of the octagon. To see this occurence, choose the "All North" configuration on the bounded plane, with maximum matrix size and visual speed.</p>
-        <p>However, not all escapes to infinity occur in a similar manner. In the "Alternating North/South" configuration, all infinite escapes travel West or East, moving two columns along at once. To understand how this works, set the configuration to "Alternating North/South" minimize matrix size and visual speed. Again, set the surface type to "Bounded Plane" and press start.</p>
-        <p>The four compact surfaces (sphere, torus, Klein bottle, real projective plane) have a finite number of possible configurations determined by the matrix size. Because of this, any initial configuration (including random) on a compact surface will eventually form an infinitely repeating loop. However, since each point on the loop must be visited an infinite number of times, its neighbors must also be visited an infinite number of times, and so on. Applying this logic repeatedly, every point in the matrix must be visited an infinite number of times. To visualize this, choose any configuration on a compact surface. Minimize matrix size and visual speed, and let the visualization run until an infinite loop is obvious. Then lower the speed significantly and press "Update Speed."</p>
+        <p>However, not all escapes to infinity occur in a similar manner. In the "Alternating North/South" configuration, all infinite escapes travel west or east, moving two columns along at once. To understand how this works, set the configuration to "Alternating North/South" and minimize matrix size and visual speed. Again, set the surface type to bounded plane and press start.</p>
+        <p>The four compact surfaces (sphere, torus, Klein bottle, real projective plane) have a finite number of possible configurations determined by the matrix size. Because of this, any initial configuration (including random) on a compact surface will eventually form an infinitely repeating loop. However, since each point on the loop must be visited an infinite number of times, its neighbors must also be visited an infinite number of times, and so on. Applying this logic repeatedly, every point in the matrix must be visited an infinite number of times. To visualize this, choose any configuration on a compact surface. Minimize matrix size and visual speed, and let the visualization run until an infinite loop becomes obvious. Then lower the speed significantly and press "Update Speed."</p>
       </div>
       <div id="conjectures">
         <h2> Conjectures </h2>
         <ul>
           <li>The rotor walk on a random configuration in &integers;<sup>2</sup> is recurrent (returning to the origin infinitely often). See discussion of this problem in [3].</li>
-          <li>The octagonal pattern described above appears exactly in rotor walks on cylinders and M&ouml;bius strips with the single-direction configuration.</li>
-          <li>As the octagonal pattern grows large, the distribution of each color inside it approaches 1/4.</li>
+          <li>The octagonal pattern described above also appears exactly in rotor walks on cylinders and M&ouml;bius strips with the single-direction configuration.</li>
+          <li>As the octagonal pattern grows large, the distribution of each rotor direction inside it approaches 1/4.</li>
         </ul>
       </div>
       <div id="conclusion">
